@@ -1,0 +1,25 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.api.HomeController.index
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+#GET     /customers                  controllers.api.CustomerController.customers(request: Request)
+
+GET     /averagettsperdaypart                  controllers.api.CustomerController.getAverageTtsPerDayPart(request: Request)
+
+GET     /averagettsperhour                  controllers.api.CustomerController.getAverageTtsPerHour(request: Request)
+
+GET     /averagecustomersperhour                  controllers.api.CustomerController.getAverageCustomersPerHour(request: Request)
+
+GET     /averagecustomersperdaypart                 controllers.api.CustomerController.getAverageCustomersPerDayPart(request: Request)
+
+POST          /files/upload-data                         controllers.api.CustomerController.uploadData(request: Request)
+
+POST          /files/download-file                       controllers.api.CustomerController.downloadFile(request: Request)
+
+GET     /cleardata                  controllers.api.CustomerController.clearData(request: Request)
