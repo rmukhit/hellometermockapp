@@ -1,0 +1,110 @@
+<div class="d-flex" id="wrapper">
+  <!-- Sidebar -->
+  <div class="styling border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading">Hellometer Mock App</div>
+    <div class="list-group">
+      <a (click)="getServicePerHour()" class="list-group-item bg-light interactive">Service Time Per Hour</a>
+      <a (click)="getServicePerDayPart()" class="list-group-item  bg-light interactive">Service Time Per Day Part</a>
+      <a (click)="getCustomersPerHour()" class="list-group-item bg-light interactive">Customers Per Hour</a>
+      <a (click)="getCustomersPerDayPart()" class="list-group-item bg-light interactive">Customers Per Day Part</a>
+
+    </div>
+  </div>
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <div class="sameline">
+              <input type="button" (click)="showFileUpload = false" value="Cancel" *ngIf="showFileUpload"/>
+              <input type="file" (change)="handleFileInput($event.target.files)"  *ngIf="showFileUpload"/>
+            </div>
+            <a class="nav-link bg-light" (click)="showFileUpload = true" *ngIf="!showFileUpload"> Upload File </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link bg-light" (click)="downloadFile()"> Download File </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link bg-light" (click)="clearData()"> Clear Data </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link bg-light" (click)="helper()"> Help </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div *ngIf="showHelper">
+        <dl class="row helper">
+          <dt class="col-sm-3">Upload File</dt>
+          <dd class="col-sm-9">Upload file in csv format that at least has fields: customer_number, pay_part, first_seen_utc and tts
+            to show the data in Hellometer Mock App</dd>
+
+          <dt class="col-sm-3">Download File</dt>
+          <dd class="col-sm-9">
+            If there is a csv file uploaded you can download it to check data. It will be downloaded as data.csv
+          </dd>
+
+          <dt class="col-sm-3">Clear Data</dt>
+          <dd class="col-sm-9"> You can clear data in graphs. </dd>
+
+          <dt class="col-sm-3">Graphs</dt>
+          <dd class="col-sm-9">
+            <dl class="row">
+              <dt class="col-sm-4">Service Time Per Hour</dt>
+              <dd class="col-sm-8">Graph that show average service time for every working hour.</dd>
+              <dt class="col-sm-4">Service Time Per Day Part</dt>
+              <dd class="col-sm-8">Graph that show average service time for every day part.</dd>
+              <dt class="col-sm-4">Customers Per Hour</dt>
+              <dd class="col-sm-8">Graph that show average number of customers for every working hour.</dd>
+              <dt class="col-sm-4">Customers Per Day Part</dt>
+              <dd class="col-sm-8">Graph that show average number of customers for every day part.</dd>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+
+      <div *ngIf="showChart">
+        <canvas baseChart
+                [datasets]=this.chart.chartData
+                [labels]=this.chart.chartLabels
+                [options]=this.chart.chartOptions
+                [legend]=this.chart.chartLegend
+                [chartType]=this.chart.chartType>
+        </canvas>
+        <div class="sameline">
+          <div class="form-check">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="barChart" value="option2" checked (click)="makeBarChart()">
+          <label class="form-check-label" for="barChart">
+            Bar Chart
+          </label>
+        </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="lineChart" value="option1" (click)="makeLineChart()">
+            <label class="form-check-label" for="lineChart">
+              Line Chart
+            </label>
+          </div></div>
+
+
+<!--        <div>-->
+<!--          <div class="form-group row">-->
+<!--          <label for="example-date-input1" class="col-2 col-form-label">Start Date</label>-->
+<!--            <div class="col-4">-->
+<!--              <input class="form-control" type="date" [valueAsDate]="startDate" id="example-date-input1">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--            <div class="form-group row">-->
+<!--              <label for="example-date-input2" class="col-2 col-form-label">End Date</label>-->
+<!--              <div class="col-4">-->
+<!--                <input class="form-control" type="date" [valueAsDate]="endDate"  id="example-date-input2">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--    </div>-->
+  </div>
+  <!-- /#page-content-wrapper -->
+</div>

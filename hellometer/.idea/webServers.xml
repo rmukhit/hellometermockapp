@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="a860d837-6b3e-4b10-84c4-30b87c034727" name="HelloMeterEC2" url="http://ec2-18-189-13-199.us-east-2.compute.amazonaws.com">
+        <fileTransfer host="ec2-18-189-13-199.us-east-2.compute.amazonaws.com" port="22" privateKey="$USER_HOME$/hellometer-postgres.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
